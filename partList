@@ -1,0 +1,90 @@
+//************************************************************
+// Author: CSC331-501
+//
+// class partList
+// This class specifies the members to implement
+// a linked list of parts.
+//************************************************************
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class partList{
+  public:
+    void add(string partID, string desc, double price);
+    //Function to insert a new part at the end of the linked list (full credit) or in part ID order (extra credit).
+    bool exists(string partID);
+    //Function to determine whether or not part ID is on the linked list.
+    void list() const;
+    //Function to output a numbered list of part ID, description and price, one part ID per line
+    void remove(string partID);
+    //Function to remove a part from the list.
+    partList();
+    //Default constructor
+    //Sets start and last pointers to null.
+  private:
+    struct partType{
+      string partID_pt;
+      string desc_pt;
+      double price_pt;
+      partType *next_pt;
+    };
+    partType *first,*last;
+};
+
+void partList::add(string partID, string desc, double price) {
+  partType *tmp = new partType;
+  tmp->partID_pt = partID;
+  tmp->desc_pt = desc;
+  tmp->price_pt = price;
+  tmp->next_pt = NULL;
+  
+  if(first == NULL){
+      first =  tmp;
+      last = tmp;
+  }
+  else{
+      last->next_pt= tmp;
+      last = last->next_pt;
+  }
+  
+  cout << "transaction processed." << endl;
+}
+
+/*bool partList::exists(string partID) {
+
+    if()
+    partList* current = first; // Initialize current
+    while (current != NULL) {
+        if (current-> key == x)
+            return true;
+        current = current->next;
+    }
+    return false;  
+
+  return 1;
+}*/
+
+void partList::list() const {
+  if(first == NULL)
+    cout << "list is empty" << endl;
+  else {
+    partType *current=first;
+    int i=0;
+    while(current != NULL){
+      i++;
+      cout << i << ". " << current->partID_pt << " " << current->desc_pt << " " << current->price_pt << endl;
+      current=current->next_pt;
+    }
+  }
+}
+
+void partList::remove(string partID) {
+  //While(partID =! )  
+  cout << "transaction processed." << endl;
+}
+
+partList::partList() {
+  first=last=NULL;
+}
